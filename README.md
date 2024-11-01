@@ -223,7 +223,7 @@
 <p><strong>موارد تحقق</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p>&nbsp;طراحی کلاس‌های جداگانه «EmailMessageService»، «SmsMessageService» و «TelegramMessageService» از این اصل پیروی می‌کند، زیرا اجازه می‌دهد انواع جدیدی از سرویس‌های پیام با ایجاد کلاس‌های جدید که «MessageService» را بدون تغییر کد موجود پیاده‌سازی می‌کنند، اضافه شوند.</p>
 </td>
 </tr>
 <tr>
@@ -231,7 +231,7 @@
 <p><strong>موارد نقض</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p> «Main.java» دقیقاً از OCP پیروی نمی کند زیرا اگر نوع جدیدی از سرویس پیام معرفی شود (به عنوان مثال، «WhatsAppMessageService» جدید)، «Main.java» باید برای رسیدگی به این مورد جدید در «switch» و در منطق بررسی نمونه اصلاح شود. این نشان می‌دهد که هنگام معرفی انواع پیام‌های جدید، منطق برنامه اصلی برای اصلاح بسته نمی‌شود.</p>
 </td>
 </tr>
 <tr>
@@ -243,7 +243,7 @@
 <p><strong>موارد تحقق</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p>هر پیاده سازی «MessageService» (به عنوان مثال، «EmailMessageService»، «SmsMessageService»، «TelegramMessageService») به درستی رابط «MessageService» را پیاده سازی می کند، به این معنی که هر یک از این سرویس ها را می توان به جای «AlmessageService» بدون رفتار مورد انتظار استفاده کرد.&nbsp;</p>
 </td>
 </tr>
 <tr>
@@ -251,7 +251,7 @@
 <p><strong>موارد نقض</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p>کلاس "Main" به بررسی های نمونه ("instanceof") و فراخوانی روش خاصی برای هر نوع پیام نیاز دارد. این امر LSP را نقض می‌کند زیرا نشان می‌دهد که هر زیرکلاس به طور کامل قابل جایگزینی برای رابط «MessageService» در زمینه چند شکلی نیست.&nbsp;</p>
 </td>
 </tr>
 <tr>
@@ -271,7 +271,7 @@
 <p><strong>موارد نقض</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p>رابط «MessageService» این اصل را نقض می‌کند، زیرا دارای روش‌هایی برای ارسال انواع مختلف پیام‌ها است («sendSmsMessage»، «sendEmailMessage»، «sendTelegramMessage»)، که کلاس‌های پیاده‌سازی را مجبور می‌کند تا پیاده‌سازی‌های خالی را برای روش‌هایی که استفاده نمی‌کنند ارائه کنند (به عنوان مثال. ، «EmailMessageService» دارای یک پیاده سازی «sendSmsMessage» خالی است). هر سرویس باید به طور ایده‌آل یک رابط خاص‌تر را پیاده‌سازی کند که فقط شامل روش‌های مربوط به نوع خود باشد (مانند «SmsService»، «EmailService»، «TelegramService»). </p>
 </td>
 </tr>
 <tr>
@@ -291,7 +291,7 @@
 <p><strong>موارد نقض</strong></p>
 </td>
 <td>
-<p>&nbsp;</p>
+<p>«Main.java» مستقیماً نمونه‌هایی از «SmsMessageService»، «EmailMessageService» و «TelegramMessageService» ایجاد می‌کند که DIP را نقض می‌کند زیرا ماژول اصلی به جای انتزاع، به پیاده‌سازی‌های عینی وابسته است. در حالت ایده‌آل، «Main.java» باید به انتزاع «MessageService» وابسته باشد و نمونه‌ها باید از طریق تزریق وابستگی تزریق شوند.&nbsp;</p>
 </td>
 </tr>
 </tbody>
