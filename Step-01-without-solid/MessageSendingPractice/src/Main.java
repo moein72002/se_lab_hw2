@@ -23,6 +23,7 @@ public class Main {
 
             System.out.println("In order to send Sms message enter 1");
             System.out.println("In order to send Email message enter 2");
+            System.out.println("In order to send Telegram message enter 3");
             System.out.println("In order to Exit, Enter 0");
 
             userAnswer= scanner.nextInt();
@@ -58,6 +59,19 @@ public class Main {
                     emailMessage.setContent(content);
                     message = emailMessage;
                     break;
+    		case 3:
+        	    TelegramMessage telegramMessage = new TelegramMessage();
+        	    System.out.print("Enter source username: ");
+	            source = scanner.next();
+	            telegramMessage.setSourceUsername(source);
+	            System.out.print("Enter target username: ");
+	            target = scanner.next();
+	            telegramMessage.setTargetUsername(target);
+	            System.out.println("Write Your Message: ");
+	            content = scanner.next(".*$");
+	            telegramMessage.setContent(content);
+	            message = telegramMessage;
+	            break;
             }
 
             if(message instanceof SmsMessage){
